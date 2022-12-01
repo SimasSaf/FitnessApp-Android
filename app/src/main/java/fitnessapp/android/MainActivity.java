@@ -2,7 +2,6 @@ package fitnessapp.android;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
-    View header;
+    View headerView;
     NavigationView leftNavBar;
     GoogleSignInClient gsc;
     TextView nameText, emailText;
@@ -62,34 +61,32 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navigationView = binding.navView;
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home)
+                R.id.nav_home, R.id.nav_history)
                 .setOpenableLayout(drawer)
                 .build();
-
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
 
         leftNavBar = findViewById(R.id.nav_view);
-        header = leftNavBar.getHeaderView(0);
-        nameText = header.findViewById(R.id.nameText);
-        emailText = header.findViewById(R.id.emailText);
+        headerView = leftNavBar.getHeaderView(0);
+        nameText = headerView.findViewById(R.id.nameText);
+        emailText = headerView.findViewById(R.id.emailText);
 
         if(account != null)
         {
             nameText.setText(account.getDisplayName());
             emailText.setText(account.getEmail());
         }
+
+
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Log.i("SIMAS", "menu");
 
-        if (item.getItemId() == R.id.action_settings) { //Not action_settings acts as logout
-            Log.i("SIMAS", "Logging out"); //I'm trying reach this when im clicking logout on the left
-                                                        //nav bar, the item is R.id.logout_buttonss
+        if (item.getItemId() == R.id.action_logout) {
             logOut();
             return true;
         }
