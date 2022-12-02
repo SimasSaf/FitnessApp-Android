@@ -10,10 +10,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 import fitnessapp.android.R;
 import fitnessapp.android.databinding.FragmentHomeBinding;
@@ -37,11 +39,25 @@ public class HomeFragment extends Fragment {
         final TextView textView = binding.textHome;
         homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
 
-        homeViewModel.getFoodByDay(1).observeForever(foodList -> {
-            Log.i("SIMAS", "new added today");
-            ArrayList<Food> listOfFood = new ArrayList<>();
-            ArrayAdapter adapter = new ArrayAdapter<Food>(this.getContext(), R.layout.home_list_items, listOfFood);
-            binding.listHome.setAdapter(adapter);
+//        homeViewModel.getFoodByDay(1).observeForever(foodList -> {
+//            Log.i("SIMAS", "new added today");
+//            ArrayList<Food> listOfFood = new ArrayList<>();
+//            ArrayAdapter adapter = new ArrayAdapter<Food>(this.getContext(), R.layout.home_list_items, listOfFood);
+//            binding.listHome.setAdapter(adapter);
+//        });
+
+        homeViewModel.getFoodByName("sof").observe(getViewLifecycleOwner(), new Observer<List<Food>>() {
+            @Override
+            public void onChanged(List<Food> foods) {
+                Log.i("SIMAS", "Changed" + foods.toString());
+            }
+        });
+
+        homeViewModel.getFoodByDay(1).observe(getViewLifecycleOwner(), new Observer<List<Food>>() {
+            @Override
+            public void onChanged(List<Food> foods) {
+                Log.i("SIMAS", "Changed" + foods.toString());
+            }
         });
 
         return root;

@@ -16,6 +16,7 @@ public class HomeViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
     private IFoodCalculations foodCalculations = new FoodCalculations();
+
     //private final MutableLiveData<List<Food>> allFood;
 
     public HomeViewModel() {

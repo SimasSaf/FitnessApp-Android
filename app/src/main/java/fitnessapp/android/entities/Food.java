@@ -1,13 +1,12 @@
 package fitnessapp.android.entities;
 
-import java.time.LocalDate;
-import java.util.Date;
-
 public class Food {
 
     private String name;
     private int kcal, protein, carbs, fat, day, month, year;
 
+    public Food() {
+    }
 
     public Food(String name, int kcal, int protein, int carbs, int fat) {
         this.name = name;

@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
+
     View headerView;
     NavigationView leftNavBar;
     GoogleSignInClient gsc;
@@ -79,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
             nameText.setText(account.getDisplayName());
             emailText.setText(account.getEmail());
         }
+
 
 
     }
