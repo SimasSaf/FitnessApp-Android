@@ -1,6 +1,8 @@
 # FitnessApp-Android
 The idea behind this app is to keep track of macro nutrients. The user would enter the food they eat and the data would be kept and provided for an easier analysis of eating habits. Personally I would like to use it myself but I will be adding more improvements to this app before that.
 
+(x marks completed)
+
 Initial goal:
 [x]	Input calories, protein, carbs, fats
 [x]	Dark theme
